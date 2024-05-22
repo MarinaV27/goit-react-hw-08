@@ -2,7 +2,7 @@
 import ContactForm from "../ContactForm/CntactForm.jsx"
 import SearchBox from "../SearchBox/SearchBox.jsx"
 import ContactList from "../ContactList/ContactList.jsx"
-import Contacts from "../../contacts.json"
+//import contacts from "../../contacts.json"
 
 export default function App(){
     return (
