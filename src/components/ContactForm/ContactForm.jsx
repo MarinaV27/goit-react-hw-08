@@ -1,9 +1,9 @@
 import { useId } from "react"
 import css from "./ContactForm.module.css"
 import { nanoid } from 'nanoid'
-import * as Yup from "react"
-import { Formik, Form, Field } from "formik"
-import { number } from "yup"
+import * as Yup from "yup"
+import { Formik, Form, Field, ErrorMessage } from "formik"
+
 
 export default function ContactForm ({ onAdd }) { 
     const fieldId = useId();
@@ -37,10 +37,12 @@ export default function ContactForm ({ onAdd }) {
         < Form className={css.container}>
             <label className={css.label} htmlFor={`${fieldId}-name`}>Name</label>
             <Field className={css.input} type="text" name="name" id={`${fieldId}-name`} /> 
-            
-            <label className={css.label} htmlFor={`${fieldId}-namber`}>Namber</label>
-            <Field className={css.input} type="text" name="namber" id={`${fieldId}-namber`} />
-            
+            <ErrorMessage name="name" />
+
+            <label className={css.label} htmlFor={`${fieldId}-number`}>Number</label>
+            <Field className={css.input} type="text" name="number" id={`${fieldId}-number`} />
+            <ErrorMessage name="number" /> 
+
             <button className={css.btn} type="submit">Add contact</button> 
 
         </Form>
