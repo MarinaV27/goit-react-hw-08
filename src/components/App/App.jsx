@@ -1,5 +1,5 @@
 
-import ContactForm from "../ContactForm/CntactForm.jsx"
+import ContactForm from "../ContactForm/ContactForm.jsx"
 import SearchBox from "../SearchBox/SearchBox.jsx"
 import ContactList from "../ContactList/ContactList.jsx"
 import initialContacts from "../../contacts.json"
@@ -9,7 +9,11 @@ import css from "./App.module.css"
 export default function App(){
     const [contacts, setContacts] = useState ([initialContacts]);
 
-    const addContact = (newContact) => {}
+    const addContact = (newContact) => {
+        setContacts = ((prevContacts) => {
+            return [...prevContacts, newContact]
+        });
+    };
 
 
     return (
