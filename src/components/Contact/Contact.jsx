@@ -1,10 +1,10 @@
-//import css from "./Contact.module.css"
+import css from "./Contact.module.css"
 
 
 export default function Contact ({ data: {id, name, number}, onDelete}) {
     return (
         <div> 
-            <div>
+            <div className={css.contact}>
                <p>{name}</p>
                <p>{number}</p>
             </div>

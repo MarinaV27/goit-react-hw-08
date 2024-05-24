@@ -1,17 +1,25 @@
 import { useId } from "react"
 import css from "./ContactForm.module.css"
-//import * as Yup from "react"
+import { nanoid } from 'nanoid'
+import * as Yup from "react"
 import { Formik, Form, Field } from "formik"
 
 export default function ContactForm ({ onAdd }) { 
     const fieldId = useId();
 
+    const handleSubmit = (values, actions) => { 
+        onAdd ({
+            id: nanoid(),
+            name: values.name,
+            number: values.number,
+        })
+        actions.resetForm();
+    }
+
     return (
         <Formik 
            initialValues={{ name: "", number: "" }}
-           //onAdd({
-
-          // })
+           onSubmit = {handleSubmit}
          >
         < Form className={css.container}>
             <label className={css.label} htmlFor={`${fieldId}-name`}>Name</label>
