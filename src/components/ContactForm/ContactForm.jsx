@@ -3,9 +3,21 @@ import css from "./ContactForm.module.css"
 import { nanoid } from 'nanoid'
 import * as Yup from "react"
 import { Formik, Form, Field } from "formik"
+import { number } from "yup"
 
 export default function ContactForm ({ onAdd }) { 
     const fieldId = useId();
+
+    const UserSchema = Yup.object().shape({
+        name: Yup.string()
+          .min(3, 'мінімальна кількість символів - 3')
+          .max(50, 'максимальна кількість символів - 50')
+          .required('Поле обовʼязкове для заповнення!'),
+        number: Yup.string()
+          .min(3, 'мінімальна кількість символів - 3')
+          .max(50, 'максимальна кількість символів - 50')
+          .required('Поле обовʼязкове для заповнення!'),
+      });
 
     const handleSubmit = (values, actions) => { 
         onAdd ({
@@ -20,6 +32,7 @@ export default function ContactForm ({ onAdd }) {
         <Formik 
            initialValues={{ name: "", number: "" }}
            onSubmit = {handleSubmit}
+           validationSchema = {UserSchema}
          >
         < Form className={css.container}>
             <label className={css.label} htmlFor={`${fieldId}-name`}>Name</label>
