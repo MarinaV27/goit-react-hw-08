@@ -4,12 +4,12 @@ import { MdCall } from "react-icons/md";
 
 export default function Contact ({ data: {id, name, number}, onDelete}) {
     return (
-        <div> 
+        <div className={css.container}> 
             <div className={css.contact}>
-               <p><FaUser />  {name}</p>
-               <p><MdCall />  {number}</p>
+               <p className={css.text}><FaUser />  {name}</p>
+               <p className={css.text}><MdCall />  {number}</p>
             </div>
-            <button onClick={() => onDelete(id)}>Delete</button>
+            <button className={css.btn} onClick={() => onDelete(id)}>Delete</button>
         </div>
 
        
