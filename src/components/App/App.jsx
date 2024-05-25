@@ -27,12 +27,12 @@ export default function App(){
 
     const deleteContact = (contactId) => {
         setContacts ((prevContacts) => {
-            return prevContacts.filter( contact => contact.id !== contactId )
+            return prevContacts.filter( (contact) => contact.id !== contactId )
         });
     };
 
-    const visibleContact = contacts.filter(contact => 
-        contact.name.toLowerCase().includes(filter.toLocaleLowerCase()) )
+    const visibleContact = contacts.filter((contact) => 
+        contact.name.toLowerCase().includes(filter.toLowerCase()) )
 
 
     return (
