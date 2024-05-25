@@ -12,7 +12,9 @@ export default function App(){
         const savedContacts = localStorage.getItem("contact");
         return savedContacts !== null ? JSON.parse(savedContacts) : initialContacts;
     })
-        
+      
+    const [filter, setFilter] = useState ("");
+
     useEffect(() => {
         localStorage.setItem("contact", JSON.stringify(contacts))
     }, [contacts]);
@@ -26,18 +28,19 @@ export default function App(){
     const deleteContact = (contactId) => {
         setContacts ((prevContacts) => {
             return prevContacts.filter( contact => contact.id !== contactId )
-        }
-        )
+        });
+    };
 
-    }
+    const visibleContact = contacts.filter(contact => 
+        contact.name.toLowerCase().includes(filter.toLocaleLowerCase()) )
 
 
     return (
         <div className={css.container}>
            <h1>Phonebook</h1>
            <ContactForm onAdd={addContact} />
-           <SearchBox />
-           <ContactList contacts={contacts} onDelete={deleteContact} />
+           <SearchBox value={filter} onFilter={setFilter} />
+           <ContactList contacts={visibleContact} onDelete={deleteContact} />
         </div>
 
     )
