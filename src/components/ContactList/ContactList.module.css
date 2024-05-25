@@ -1,6 +1,6 @@
 .list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 4px;
     margin: 20px 0;
     width: 300px;
@@ -13,7 +13,7 @@
   .item {
     display: flex;
     gap: 4px;
-    margin: 8px 0;
+    margin: 8px 8px;
     width: auto;
     border: 1px solid black;
     padding: 8px;
