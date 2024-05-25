@@ -6,6 +6,7 @@ import initialContacts from "../../contacts.json"
 import { useState, useEffect } from "react"
 import css from "./App.module.css"
 
+
 export default function App(){
     const [contacts, setContacts] = useState (() => {
         const savedContacts = localStorage.getItem("contact");
@@ -22,13 +23,21 @@ export default function App(){
         });
     };
 
+    const deleteContact = (contactId) => {
+        setContacts ((prevContacts) => {
+            return prevContacts.filter( contact => contact.id !== contactId )
+        }
+        )
+
+    }
+
 
     return (
         <div className={css.container}>
            <h1>Phonebook</h1>
            <ContactForm onAdd={addContact} />
            <SearchBox />
-           <ContactList contacts={contacts} />
+           <ContactList contacts={contacts} onDelete={deleteContact} />
         </div>
 
     )
