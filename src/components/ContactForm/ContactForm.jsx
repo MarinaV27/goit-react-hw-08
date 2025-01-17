@@ -17,7 +17,9 @@ export default function ContactForm ({ onAdd }) {
           .min(3, 'Мінімальна кількість символів - 3')
           .max(9, 'Максимальна кількість символів - 9')
           .required('Поле обовʼязкове для заповнення!'),
-      });
+    });
+    
+    
 
     const handleSubmit = (values, actions) => { 
         onAdd ({
