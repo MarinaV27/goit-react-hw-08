@@ -8,8 +8,10 @@ import { Toaster } from 'react-hot-toast'
 import { store } from './redux/store.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <App />
-    <Toaster />
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+          <App />
+          <Toaster />
+    </Provider>,
+  </React.StrictMode>
 )
