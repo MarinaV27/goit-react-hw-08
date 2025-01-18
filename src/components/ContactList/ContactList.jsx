@@ -1,18 +1,28 @@
+import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact.jsx"
 import css from "./ContactList.module.css"
+import { selectContacts } from "../../redux/contactsSlice.js";
+import { selectNaneFilter } from "../../redux/filtersSlice.js";
 
 
-export default function ContactList ({contacts, onDelete}) {
+export default function ContactList() {
+   const contacts = useSelector(selectContacts);
+   const filters = useSelector(selectNaneFilter); 
+
+   const visibleContact = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filters.toLowerCase())); 
     return (
-      <div>
+      
       <ul className={css.list}>
-      {contacts.map((contact) => (
-         <li className={css.item} key={contact.id}>
-            <Contact data={contact} onDelete={onDelete} />
-         </li>
-      ))}  
+             {visibleContact.map((contact) => {
+                (
+                   <li className={css.item} >
+                      <Contact key={contact.id} {...contact} />
+                   </li>
+                )
+             })}  
       </ul> 
-      </div>
+   
 
     );
 }

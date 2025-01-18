@@ -9,11 +9,11 @@ const filtersSlice = createSlice({
     initialState,
     reducers: {
         changeFilter: (state, action) => {
-            state.name = action.payload
+            state.name = action.payload;
         }
     }
 })
 
 export const { changeFilter } = filtersSlice.actions
-export const selectNaneFilter = (state ) => state.filters.name
+export const selectNaneFilter = state  => state.filters.name
 export default filtersSlice.reducer

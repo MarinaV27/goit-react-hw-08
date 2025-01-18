@@ -3,38 +3,50 @@ import css from "./ContactForm.module.css"
 import { nanoid } from 'nanoid'
 import * as Yup from "yup"
 import { Formik, Form, Field, ErrorMessage } from "formik"
+import { useDispatch } from "react-redux"
+import { addContact } from "../../redux/contactsSlice"
 
 
-export default function ContactForm ({ onAdd }) { 
-    const fieldId = useId();
+
 
     const UserSchema = Yup.object().shape({
         name: Yup.string()
-          .min(3, 'Мінімальна кількість символів - 3')
-          .max(50, 'Максимальна кількість символів - 50')
-          .required('Поле обовʼязкове для заповнення!'),
+            .min(3, 'Мінімальна кількість символів - 3')
+            .max(50, 'Максимальна кількість символів - 50')
+            .required('Поле обовʼязкове для заповнення!'),
         number: Yup.string()
-          .min(3, 'Мінімальна кількість символів - 3')
-          .max(9, 'Максимальна кількість символів - 9')
-          .required('Поле обовʼязкове для заповнення!'),
+            .min(3, 'Мінімальна кількість символів - 3')
+            .max(9, 'Максимальна кількість символів - 9')
+            .required('Поле обовʼязкове для заповнення!'),
     });
     
-    
+    export default function ContactForm() {
+    const dispatch = useDispatch();
+    const fieldId = useId();
 
-    const handleSubmit = (values, actions) => { 
-        onAdd ({
-            id: nanoid(),
-            name: values.name,
-            number: values.number,
-        })
-        actions.resetForm();
-    }
+    // const handleSubmit = (values, actions) => { 
+    //     onAdd ({
+    //         id: nanoid(),
+    //         name: values.name,
+    //         number: values.number,
+    //     })
+    //     actions.resetForm();
+    // }
 
     return (
-        <Formik 
-           initialValues={{ name: "", number: "" }}
-           onSubmit = {handleSubmit}
-           validationSchema = {UserSchema}
+        <Formik
+            initialValues={{ name: "", number: "" }}
+            validationSchema={UserSchema}
+            onSubmit={(values, { resetForm }) => { 
+                const onAdd = ({
+                id: nanoid(),
+                name: values.name,
+                number: values.number,
+                })
+                
+                dispatch(addContact(onAdd));
+                resetForm()
+            }}
          >
         < Form className={css.form}>
             <div className={css.formGroup}>
