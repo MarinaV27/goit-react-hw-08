@@ -5,12 +5,12 @@ import { selectContacts } from "../../redux/contactsSlice.js";
 import { selectNaneFilter } from "../../redux/filtersSlice.js";
 
 
-export default function ContactList() {
+export default function ContactList () {
    const contacts = useSelector(selectContacts);
-   const filters = useSelector(selectNaneFilter); 
+   const filter = useSelector(selectNaneFilter); 
 
    const visibleContact = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filters.toLowerCase())); 
+      contact.name.toLowerCase().includes(filter.toLowerCase())); 
     return (
       
       <ul className={css.list}>
