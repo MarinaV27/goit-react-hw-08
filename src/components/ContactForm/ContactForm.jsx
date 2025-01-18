@@ -1,15 +1,19 @@
 import { useId } from "react"
 import css from "./ContactForm.module.css"
-import { nanoid } from 'nanoid'
+//import { nanoid } from 'nanoid'
 import * as Yup from "yup"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import { useDispatch } from "react-redux"
+import { useDispatch} from "react-redux"
 import { addContact } from "../../redux/contactsSlice"
-
-
-
-
-    const UserSchema = Yup.object().shape({
+import { nanoid } from "@reduxjs/toolkit"
+   
+    
+export default function ContactForm() {
+   
+    const dispatch = useDispatch();
+    const fieldId = useId();
+        
+        const UserSchema = Yup.object().shape({
         name: Yup.string()
             .min(3, 'Мінімальна кількість символів - 3')
             .max(50, 'Максимальна кількість символів - 50')
@@ -19,10 +23,6 @@ import { addContact } from "../../redux/contactsSlice"
             .max(9, 'Максимальна кількість символів - 9')
             .required('Поле обовʼязкове для заповнення!'),
     });
-    
-    export default function ContactForm() {
-    const dispatch = useDispatch();
-    const fieldId = useId();
 
     // const handleSubmit = (values, actions) => { 
     //     onAdd ({
@@ -37,15 +37,14 @@ import { addContact } from "../../redux/contactsSlice"
         <Formik
             initialValues={{ name: "", number: "" }}
             validationSchema={UserSchema}
-            onSubmit={(values, { resetForm }) => { 
-                const onAdd = ({
-                id: nanoid(),
-                name: values.name,
-                number: values.number,
-                })
-                
-                dispatch(addContact(onAdd));
-                resetForm()
+            onSubmit={(values, options) => {
+                const onAdd = {
+                    id: nanoid(),
+                    name: values.name,
+                    number: values.number,
+                }
+                dispatch(addContact(onAdd))
+                options.resetForm()
             }}
          >
         < Form className={css.form}>
