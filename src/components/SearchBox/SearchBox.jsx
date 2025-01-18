@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import css from "./SearchBox.module.css"
-import { changeFilter, selectNaneFilter } from "../../redux/filtersSlice";
+import { changeFilter} from "../../redux/filtersSlice";
 
 export default function SearchBox() {
     const dispatch = useDispatch();
-    const filter = useSelector(selectNaneFilter);
+    //const filter = useSelector(selectNaneFilter);
     const handleChange = (event) => {
         dispatch(changeFilter(event.target.value))
     }
@@ -13,7 +13,8 @@ export default function SearchBox() {
             <p>Find contaccts by name</p>
             <input className={css.list}
             type="text" 
-            value={filter}
+            //value={filter}
+             placeholder="Заповніть поле пошуку"
             onChange={handleChange}
             />
         </div>

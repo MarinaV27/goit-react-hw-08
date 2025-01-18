@@ -13,16 +13,25 @@ export default function ContactList () {
       contact.name.toLowerCase().includes(filter.toLowerCase())); 
     return (
       
-      <ul className={css.list}>
+     <ul className={css.list}>
              {visibleContact.map((contact) => {
-                (
-                   <li className={css.item} >
-                      <Contact key={contact.id} {...contact} />
+                
+                  return <li className={css.item} key={contact.id}>
+                      <Contact  {...contact} />
                    </li>
-                )
+                
              })}  
       </ul> 
+
+
+
+
+
+
+
    
 
     );
 }
+
+

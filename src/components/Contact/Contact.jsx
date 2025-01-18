@@ -4,7 +4,7 @@ import { MdCall } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contactsSlice";
 
-export default function Contact({ data: { id, name, number } }) {
+export default function Contact( { id, name, number } ) {
     const dispatch = useDispatch();
     const handleDelete = () => {dispatch(deleteContact(id))}
     return (
