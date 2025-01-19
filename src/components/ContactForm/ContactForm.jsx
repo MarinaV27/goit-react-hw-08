@@ -1,6 +1,5 @@
 import { useId } from "react"
 import css from "./ContactForm.module.css"
-//import { nanoid } from 'nanoid'
 import * as Yup from "yup"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { useDispatch} from "react-redux"
@@ -24,14 +23,6 @@ export default function ContactForm() {
             .required('Поле обовʼязкове для заповнення!'),
     });
 
-    // const handleSubmit = (values, actions) => { 
-    //     onAdd ({
-    //         id: nanoid(),
-    //         name: values.name,
-    //         number: values.number,
-    //     })
-    //     actions.resetForm();
-    // }
 
     return (
         <Formik
