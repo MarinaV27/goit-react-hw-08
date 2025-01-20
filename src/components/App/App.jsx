@@ -8,6 +8,19 @@ import css from "./App.module.css"
 
 
 export default function App(){
+
+
+    return (
+        <div className={css.container}>
+           <h1>Phonebook</h1>
+           <ContactForm />
+           <SearchBox />
+           <ContactList />
+        </div>
+
+    )
+}
+
 //    const [contacts, setContacts] = useState (() => {
  //       const savedContacts = localStorage.getItem("contact");
  //       return savedContacts !== null ? JSON.parse(savedContacts) : initialContacts;
@@ -33,17 +46,4 @@ export default function App(){
 
     //const visibleContact = contacts.filter((contact) => 
     //    contact.name.toLowerCase().includes(filter.toLowerCase()) )
-
-
-    return (
-        <div className={css.container}>
-           <h1>Phonebook</h1>
-           <ContactForm />
-           <SearchBox />
-           <ContactList />
-        </div>
-
-    )
-}
-
 
