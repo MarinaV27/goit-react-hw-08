@@ -20,7 +20,14 @@ const contactsSlice = createSlice({
         },
         deleteContact: (state, action) => {
            state.items = state.items.filter((item) => item.id !==action.payload)
-        }
+        },
+        setLoading: (state, action) => {
+            state.isLoadin = action.payload
+        },
+        setError: (state, action) => {
+            state.isError = action.payload
+        },
+        
     }
 })
 
