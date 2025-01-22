@@ -1,35 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit"
-
-const initialState = {
-    contacts: {
-        items: [],
-        loading: false,
-        error: null  
-    },
+import { fetchData } from "./contactsOps"
     
-}
+
 
 const contactsSlice = createSlice({
     name: 'contacts',
-    initialState,
-    reducers: {
-        addContact: (state, action) => {
-            state.items.push(action.payload)
-        },
-        deleteContact: (state, action) => {
-           state.items = state.items.filter((item) => item.id !==action.payload)
-        },
-        setLoading: (state, action) => {
-            state.isLoadin = action.payload
-        },
-        setError: (state, action) => {
-            state.isError = action.payload
-        },
+    initialState: {
+        items: [],
+        loading: false,
+        error: null
+    },
+
+    extraReducers: builder => {
+        builder
+            .addCase(fetchData.fulfilled, (state, action) => {
+                state.items = action.payload
+                state.loading = false;
+            })
+            .addCase(fetchData.rejected, (state, action) => {
+                state.error = action.payload
+                state.loading = false;
+            })
+            .addCase(fetchData.pending, (state) => {
+                state.loading = true
+                state.error = false
+        })
 
     }
 })
 
+
+export default contactsSlice.reducer
 export const { addContact, deleteContact } = contactsSlice.actions
 export const selectContacts = state => state.contacts.items
-export default contactsSlice.reducer
+export const selectLoading = state => state.contacts.loading
+export const selectError = state => state.contacts.error
+
 
