@@ -6,9 +6,7 @@ const initialState = {
         loading: false,
         error: null  
     },
-    filters: {
-        name: ''
-    }
+    
 }
 
 const contactsSlice = createSlice({
@@ -27,7 +25,7 @@ const contactsSlice = createSlice({
         setError: (state, action) => {
             state.isError = action.payload
         },
-        
+
     }
 })
 
