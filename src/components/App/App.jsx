@@ -5,14 +5,14 @@ import ContactList from "../ContactList/ContactList.jsx"
 import css from "./App.module.css"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { fetchData } from "../../redux/contactsOps.js"
+import { fetchContacts } from "../../redux/contactsOps.js"
 import { selectError, selectLoading } from "../../redux/contactsSlice.js"
 
 
 export default function App() {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchData());
+        dispatch(fetchContacts());
     }, [dispatch]);
 
     const error = useSelector(selectError)
