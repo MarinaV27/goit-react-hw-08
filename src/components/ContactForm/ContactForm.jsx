@@ -3,8 +3,8 @@ import css from "./ContactForm.module.css"
 import * as Yup from "yup"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { useDispatch} from "react-redux"
-import { addContact } from "../../redux/contactsSlice"
-import { nanoid } from "@reduxjs/toolkit"
+import { addContact } from '../../redux/contactsOps'
+//import { nanoid } from "@reduxjs/toolkit"
    
     
 export default function ContactForm() {
@@ -30,7 +30,7 @@ export default function ContactForm() {
             validationSchema={UserSchema}
             onSubmit={(values, options) => {
                 const onAdd = {
-                    id: nanoid(),
+                   // id: nanoid(),
                     name: values.name,
                     number: values.number,
                 }
