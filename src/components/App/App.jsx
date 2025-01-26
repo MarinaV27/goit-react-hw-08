@@ -14,7 +14,7 @@ const HomePage = lazy (() => import('../../pages/HomePage/HomePage.jsx'))
 
 export default function App() {
     const dispatch = useDispatch();
-    const isRefreshing = useSelector(selectIsRefreshing)
+    const isRefreshing = useSelector(selectIsRefreshing);
     useEffect(() => {
         dispatch(fetchContacts());
     }, [dispatch]);
