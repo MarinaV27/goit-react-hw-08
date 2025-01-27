@@ -7,7 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { selectIsRefreshing } from '../../redux/auth/selectors.js';
 import { lazy, Suspense, useEffect } from "react"
-import { fetchContacts } from "../../redux/contacts/operations.js"
+import {refreshUser} from '../../redux/auth/operations.js'
 import Layout from '../Layout/Layout.jsx'
 //import { selectError, selectLoading } from "../../redux/contacts/selectors.js"
 
@@ -17,7 +17,7 @@ export default function App() {
     const dispatch = useDispatch();
     const isRefreshing = useSelector(selectIsRefreshing);
     useEffect(() => {
-        dispatch(fetchContacts());
+        dispatch(refreshUser());
     }, [dispatch]);
 
     //  const error = useSelector(selectError)
