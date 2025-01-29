@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import css from './RegistrationForm.module.css'
 import * as Yup from 'yup';
+import { Link } from "react-router-dom";
 
 const RegistrationSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,14 +19,20 @@ const initialValues = {
 };
 
 const RegistrationForm = () => {
+  const handleSubmit = (values, options) => {
+        options.resetForm();
+}
   return (
       <Formik
-          initialValues={initialValues}
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
           validationSchema={RegistrationSchema}
       >
         <Form className={css.form} autoComplete="off">
             <div className={css.inputWrapper}>
-                <label htmlFor="name">Username</label>
+          <label htmlFor="name">
+            <span>Username</span>
+          </label>
                   <Field className={css.input}
                       type='text'
                       name='name'
@@ -36,7 +43,9 @@ const RegistrationForm = () => {
              
             
             <div className={css.inputWrapper}>
-                <label htmlFor="email">Email</label>
+          <label htmlFor="email">
+            <span>Email</span>
+          </label>
                   <Field className={css.input}
                       type='email'
                       name='email'
@@ -45,7 +54,9 @@ const RegistrationForm = () => {
             </div>
             
             <div className={css.inputWrapper}>
-                <label htmlFor="password">Password</label>
+          <label htmlFor="password">
+            <span>Password</span>
+          </label>
                   <Field className={css.input} 
                       type='password'
                       name='password'
@@ -55,7 +66,8 @@ const RegistrationForm = () => {
             </div>
             <button className={css.btn} type='submit'>
                   Register
-            </button>
+        </button>
+        <p>You already have accout? <Link className={css.link} to='/login'>Login!</Link></p>
         </Form>
     </Formik>
   )
