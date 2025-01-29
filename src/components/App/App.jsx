@@ -6,12 +6,13 @@ import { selectIsRefreshing } from '../../redux/auth/selectors.js';
 import { lazy, Suspense, useEffect } from "react"
 import {refreshUser} from '../../redux/auth/operations.js'
 import Layout from '../Layout/Layout.jsx'
-import LoginPage from '../../pages/LoginPage/LoginPage.jsx'
-import RegisterPage from '../../pages/RegisterPage/RegisterPage.jsx'
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx'
 
 
-const HomePage = lazy (() => import('../../pages/HomePage/HomePage.jsx'))
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'))
+const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage.jsx'))
+const RegisterPage = lazy(() => import('../../pages/RegisterPage/RegisterPage.jsx'))
+const ContactsPage = lazy(() => import('../../pages/ContactsPage/ContactPage.jsx'))
 
 export default function App() {
     const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export default function App() {
                         <Route path='/login' element={<LoginPage />} />
                         <Route path='/register' element={<RegisterPage />} />
                         <Route path='*' element={<NotFoundPage />} />
+                        <Route path='/contacts' element={<ContactsPage />} />
                 </Routes>
             </Suspense>
         </Layout>
