@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux"
 import { selectIsRefreshing } from '../../redux/auth/selectors.js';
 import { lazy, Suspense, useEffect } from "react"
-import {refreshUser} from '../../redux/auth/operations.js'
+import {refreshUserThunk} from '../../redux/auth/operations.js'
 import Layout from '../Layout/Layout.jsx'
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx'
 
@@ -18,7 +18,7 @@ export default function App() {
     const dispatch = useDispatch();
     const isRefreshing = useSelector(selectIsRefreshing);
     useEffect(() => {
-        dispatch(refreshUser());
+        dispatch(refreshUserThunk());
     }, [dispatch]);
 
     
