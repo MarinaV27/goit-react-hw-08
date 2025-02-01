@@ -39,4 +39,13 @@ export const logoutThunk = createAsyncThunk('auth/logout', async (__dirname, thu
      } catch (error) {
         return thunkAPI.rejectWithValue(error.message)
      }
- })
+})
+ 
+export const refreshUserThunk = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+    try {
+        const { data } = await goitApi.post('users/current');
+        return data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.message)
+    }
+})

@@ -7,8 +7,7 @@ import { authReducer } from "./auth/slice.js";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 const persistConfig = {
-  key: 'auth-data',
-  version: 1,
+  key: 'auth',
   whitelist: ['token'],
   storage,
 };
