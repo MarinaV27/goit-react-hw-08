@@ -1,7 +1,10 @@
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import css from './RegistrationForm.module.css'
 import * as Yup from 'yup';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerThunk } from "../../redux/auth/operations";
+
 
 const RegistrationSchema = Yup.object().shape({
   name: Yup.string()
@@ -18,8 +21,18 @@ const initialValues = {
   password: '',
 };
 
+
+
 const RegistrationForm = () => {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (values, options) => {
+    dispatch(registerThunk(values))
+      .unwrap()
+      .then(() => navigate('/'))
+    
         options.resetForm();
 }
   return (
