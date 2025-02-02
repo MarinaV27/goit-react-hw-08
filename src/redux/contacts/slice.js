@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { fetchContacts, deleteContact, addContact } from "./operations.js"
+import { logoutThunk } from "../auth/operations.js"
 //import { selectNaneFilter } from "./operations.js"
 
 
@@ -31,6 +32,11 @@ const contactsSlice = createSlice({
             })
             .addCase(addContact.fulfilled, (state, action) => {
             state.items.push(action.payload)
+            })
+            .addCase(logoutThunk.fulfilled, state => {
+                state.items = [];
+                state.loading = false;
+                state.error = null;
         })
 
     }
