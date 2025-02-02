@@ -7,6 +7,7 @@ import { lazy, Suspense, useEffect } from "react"
 import {refreshUserThunk} from '../../redux/auth/operations.js'
 import Layout from '../Layout/Layout.jsx'
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx'
+import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
 
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'))
@@ -31,7 +32,11 @@ export default function App() {
                         <Route path='/login' element={<LoginPage />} />
                         <Route path='/register' element={<RegisterPage />} />
                         <Route path='*' element={<NotFoundPage />} />
-                        <Route path='/contacts' element={<ContactsPage />} />
+                    <Route path='/contacts' element={
+                        <PrivateRoute>
+                            <ContactsPage />
+                        </PrivateRoute>
+                    } />
                 </Routes>
             </Suspense>
         </Layout>
