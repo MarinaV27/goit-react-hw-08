@@ -8,6 +8,7 @@ import {refreshUserThunk} from '../../redux/auth/operations.js'
 import Layout from '../Layout/Layout.jsx'
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage.jsx'
 import PrivateRoute from '../PrivateRoute/PrivateRoute.jsx';
+import RestrictedRoute from '../RestrictedRoute/RestrictedRoute.jsx';
 
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'))
@@ -29,8 +30,14 @@ export default function App() {
             <Suspense fallback={<div>Please wait..</div>}>
                 <Routes>
                         <Route path="/" element={<HomePage />} />
-                        <Route path='/login' element={<LoginPage />} />
-                        <Route path='/register' element={<RegisterPage />} />
+                    <Route path='/login' element={
+                        <RestrictedRoute>
+                            <LoginPage />
+                        </RestrictedRoute>} />
+                    <Route path='/register' element={
+                        <RestrictedRoute>
+                            <RegisterPage />
+                        </RestrictedRoute>} />
                         <Route path='*' element={<NotFoundPage />} />
                     <Route path='/contacts' element={
                         <PrivateRoute>
