@@ -5,14 +5,14 @@ import SearchBox from '../../components/SearchBox/SearchBox'
 import ContactList from '../../components/ContactList/ContactList'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchContacts } from '../../redux/contacts/operations'
-import { selectError, selectLoading } from '../../redux/contacts/selectors'
+import { selectLoading } from '../../redux/contacts/selectors'
 import { Loader } from '../../components/Loader/Loader'
-import {Error} from '../../components/Error/Error'
+//import {Error} from '../../components/Error/Error'
 
 const ContactPage = () => {
     const dispatch = useDispatch();
     const isLoading = useSelector(selectLoading);
-    const isError = useSelector(selectError)
+
 
 
 
@@ -28,7 +28,7 @@ const ContactPage = () => {
           <div className={css.loader}>{isLoading && 'Request in progress...'}</div>
           <ContactList />
           {isLoading && <Loader />}
-          {isError && <Error />}
+         
 
     </div>
   )
