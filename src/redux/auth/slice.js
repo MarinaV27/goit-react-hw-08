@@ -13,8 +13,6 @@ const initialState = {
 
 
 
-
-
 const authSlice = createSlice ({
   name: 'auth',
   initialState,
@@ -38,6 +36,13 @@ const authSlice = createSlice ({
         state.user.name = action.payload.name;
         state.user.email = action.payload.email;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+    .addCase(refreshUserThunk.pending, (state, action) => {
+        state.isRefreshing = true;
+    })
+    .addCase(refreshUserThunk.rejected, (state, action) => {
+        state.isRefreshing = false;
     })
     
   }

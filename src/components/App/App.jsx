@@ -23,9 +23,7 @@ export default function App() {
 
     
 
-    return isRefreshing ? (
-        <p>Refreshing user please wait...</p>
-    ) : (
+    return isRefreshing ? null : (
         <Layout>
             <Suspense fallback={<div>Please wait..</div>}>
                 <Routes>
